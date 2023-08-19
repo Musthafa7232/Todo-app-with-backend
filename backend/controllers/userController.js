@@ -35,10 +35,10 @@ export const signIn = async (req, res) => {
     console.log('hey');
     const user = await userModel.findOne({ userName });
     if (!user) {
-      res.status(401).json({ message: "user doest exist" });
+      res.json({ message: "user doest exist" }).status(404);
     } else {
       if (user.password !== password) {
-        res.status(401).json({ message: "Incorrect Password" });
+        res.json({ message: "Incorrect Password" }).status(404);
       } else {
         const token= createUserToken(user)
         console.log(user);
